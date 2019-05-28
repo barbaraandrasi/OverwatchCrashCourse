@@ -1,15 +1,64 @@
-<nav class="navbar navbar-dark bg-dark">
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-secondary btn-dark my-2 my-sm-0" routerLink='/home'>Home</button>
-        <button type="button" class="btn btn-secondary btn-dark my-2 my-sm-0" routerLink='/match'>Match History Manager</button>
-        <button type="button" class="btn btn-secondary btn btn-dark my-2 my-sm-0" routerLink='/userprofile'>My Profile</button>
-  </div>
-  <button class="btn btn btn-dark my-2 my-sm-0" (click)="onLogout()">Logout</button>
-</nav>
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary">
 
-<div class="card m-5" style="width:18rem" *ngIf="userDetails">
-    <ul class="list-group">
-      <li class="list-group-item"><strong>Username : </strong>{{userDetails.userName}}</li>
-      <li class="list-group-item"><strong>Email : </strong>{{userDetails.email}}</li>
-    </ul>
+            <!-- Navbar brand -->
+            <mdb-navbar-brand><a class="navbar-brand" href="#">
+                        <img src="/assets/img/overwatch.png" height="30" class="d-inline-block align-top" alt="">
+                        Overwatch Match History Manager
+            </a></mdb-navbar-brand>
+        
+            <!-- Collapsible content -->
+            <links>
+        
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" mdbWavesEffect routerLink='/home'>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" mdbWavesEffect routerLink='/match'>My Match History</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link waves-light" mdbWavesEffect routerLink='/userprofile'><span class="sr-only">(current)</span>User Details</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                         <a class="nav-link waves-light" mdbWavesEffect (click)="onLogout()">Logout</a>
+                    </li>
+              </ul>
+                <!-- Links -->
+        
+            </links>
+            <!-- Collapsible content -->
+        
+        </mdb-navbar>
+        <!--/.Navbar-->
+
+      <p></p>
+
+        <!-- Card -->
+<div class="card testimonial-card">
+
+    <p></p>
+    <!-- Background color -->
+    <div class="card-up indigo lighten-1"></div>
+  
+    <!-- Avatar -->
+    <div class="avatar mx-auto white">
+      <img src="/assets/img/tracer.jpg" class="rounded-circle" alt="woman avatar" width="150" height="150">
+    </div>
+  
+    <!-- Content -->
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Username : </strong>{{userDetails.userName}}</li>
+            <li class="list-group-item"><strong>Email : </strong>{{userDetails.email}}</li>
+          </ul>
+    </div>
+  
   </div>
+  <!-- Card -->
+
+

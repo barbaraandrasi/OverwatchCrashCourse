@@ -1,10 +1,39 @@
-<nav class="navbar navbar-dark bg-dark">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary btn-dark my-2 my-sm-0" routerLink='/home'>Home</button>
-            <button type="button" class="btn btn-secondary btn-dark my-2 my-sm-0" routerLink='/match'>Match History Manager</button>
-            <button type="button" class="btn btn-secondary btn btn-dark my-2 my-sm-0" routerLink='/userprofile'>My Profile</button>
-      </div>
-      <button class="btn btn btn-dark my-2 my-sm-0" (click)="onLogout()">Logout</button>
-</nav>
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary">
+
+            <!-- Navbar brand -->
+            <mdb-navbar-brand><a class="navbar-brand" href="#">
+                        <img src="/assets/img/overwatch.png" height="30" class="d-inline-block align-top" alt="">
+                        Overwatch Match History Manager
+            </a></mdb-navbar-brand>
+        
+            <!-- Collapsible content -->
+            <links>
+        
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" mdbWavesEffect routerLink='/home'>Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link waves-light" mdbWavesEffect routerLink='/match'>My Match History<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" mdbWavesEffect routerLink='/userprofile'>User Details</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                             <a class="nav-link waves-light" mdbWavesEffect (click)="onLogout()">Logout</a>
+                        </li>
+                  </ul>
+                <!-- Links -->
+        
+            </links>
+            <!-- Collapsible content -->
+        
+        </mdb-navbar>
+        <!--/.Navbar-->
 
 <p>Create your match history here.</p>
