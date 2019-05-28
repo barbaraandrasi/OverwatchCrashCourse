@@ -1,0 +1,1 @@
+Entitások: User, Match, Team, Hero, Rewards

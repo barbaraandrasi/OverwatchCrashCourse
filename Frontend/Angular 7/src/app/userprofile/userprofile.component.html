@@ -1,0 +1,15 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary btn-dark my-2 my-sm-0" routerLink='/home'>Home</button>
+        <button type="button" class="btn btn-secondary btn-dark my-2 my-sm-0" routerLink='/match'>Match History Manager</button>
+        <button type="button" class="btn btn-secondary btn btn-dark my-2 my-sm-0" routerLink='/userprofile'>My Profile</button>
+  </div>
+  <button class="btn btn btn-dark my-2 my-sm-0" (click)="onLogout()">Logout</button>
+</nav>
+
+<div class="card m-5" style="width:18rem" *ngIf="userDetails">
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Username : </strong>{{userDetails.userName}}</li>
+      <li class="list-group-item"><strong>Email : </strong>{{userDetails.email}}</li>
+    </ul>
+  </div>
