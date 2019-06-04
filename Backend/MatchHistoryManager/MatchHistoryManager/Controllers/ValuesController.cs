@@ -13,7 +13,7 @@ namespace MatchHistoryManager.Controllers
     {
         public ValuesController(AuthenticationContext context)
         {
-
+        
         }
 
         // GET api/values

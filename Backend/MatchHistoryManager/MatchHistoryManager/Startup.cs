@@ -38,7 +38,7 @@ namespace MatchHistoryManager
             services.AddDbContext<AuthenticationContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddEntityFrameworkStores<AuthenticationContext>();
 
             services.Configure<IdentityOptions>(options =>
@@ -80,10 +80,9 @@ namespace MatchHistoryManager
             }
 
             app.UseCors(builder =>
-           builder.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString())
-           .AllowAnyHeader()
-           .AllowAnyMethod()
-
+                 builder.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString())
+                .AllowAnyHeader()
+                .AllowAnyMethod()
            );
 
             app.UseAuthentication();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MatchHistoryManager.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -13,8 +14,8 @@ namespace MatchHistoryManager.Controllers
     [ApiController]
     public class UserProfileController : ControllerBase
     {
-        private UserManager<IdentityUser> _userManager;
-        public UserProfileController(UserManager<IdentityUser> userManager)
+        private UserManager<ApplicationUser> _userManager;
+        public UserProfileController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }

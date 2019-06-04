@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,10 @@ namespace MatchHistoryManager.Models
 
         }
 
-        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }    
+        public DbSet<Hero> Heroes { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Match> Matches { get; set; }
+        public DbSet<Reward> Rewards { get; set; }
     }
 }

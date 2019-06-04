@@ -18,11 +18,11 @@ namespace MatchHistoryManager.Controllers
     [ApiController]
     public class ApplicationUserController : ControllerBase
     {
-        private UserManager<IdentityUser> _userManager;
-        private SignInManager<IdentityUser> _singInManager;
+        private UserManager<ApplicationUser> _userManager;
+        private SignInManager<ApplicationUser> _singInManager;
         private readonly ApplicationSettings _appSettings;
 
-        public ApplicationUserController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IOptions<ApplicationSettings> appSettings)
+        public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<ApplicationSettings> appSettings)
         {
             _userManager = userManager;
             _singInManager = signInManager;
@@ -34,7 +34,7 @@ namespace MatchHistoryManager.Controllers
         //POST : /api/ApplicationUser/Register
         public async Task<Object> PostApplicationUser(ApplicationUserModel model)
         {
-            var applicationUser = new IdentityUser()
+            var applicationUser = new ApplicationUser()
             {
                 UserName = model.UserName,
                 Email = model.Email
@@ -68,7 +68,7 @@ namespace MatchHistoryManager.Controllers
                     }),
                     Expires = DateTime.UtcNow.AddDays(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
-                };
+                };          
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                 var token = tokenHandler.WriteToken(securityToken);

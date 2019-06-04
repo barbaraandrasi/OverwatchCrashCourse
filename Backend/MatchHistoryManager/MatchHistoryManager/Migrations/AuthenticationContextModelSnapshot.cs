@@ -19,6 +19,86 @@ namespace MatchHistoryManager.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MatchHistoryManager.Models.Hero", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Difficulty");
+
+                    b.Property<bool>("Me");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Role");
+
+                    b.Property<int?>("TeamId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("Heroes");
+                });
+
+            modelBuilder.Entity("MatchHistoryManager.Models.Match", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int?>("EnemyTeamId");
+
+                    b.Property<DateTime>("MatchDateTime");
+
+                    b.Property<int?>("MyTeamId");
+
+                    b.Property<int>("Result");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("EnemyTeamId");
+
+                    b.HasIndex("MyTeamId");
+
+                    b.ToTable("Matches");
+                });
+
+            modelBuilder.Entity("MatchHistoryManager.Models.Reward", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Category");
+
+                    b.Property<int?>("MatchId");
+
+                    b.Property<int>("Medal");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MatchId");
+
+                    b.ToTable("Rewards");
+                });
+
+            modelBuilder.Entity("MatchHistoryManager.Models.Team", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Teams");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -73,6 +153,9 @@ namespace MatchHistoryManager.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -112,6 +195,8 @@ namespace MatchHistoryManager.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -182,6 +267,42 @@ namespace MatchHistoryManager.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("MatchHistoryManager.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("MatchHistoryManager.Models.Hero", b =>
+                {
+                    b.HasOne("MatchHistoryManager.Models.Team")
+                        .WithMany("Heroes")
+                        .HasForeignKey("TeamId");
+                });
+
+            modelBuilder.Entity("MatchHistoryManager.Models.Match", b =>
+                {
+                    b.HasOne("MatchHistoryManager.Models.ApplicationUser")
+                        .WithMany("MatchHistory")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("MatchHistoryManager.Models.Team", "EnemyTeam")
+                        .WithMany()
+                        .HasForeignKey("EnemyTeamId");
+
+                    b.HasOne("MatchHistoryManager.Models.Team", "MyTeam")
+                        .WithMany()
+                        .HasForeignKey("MyTeamId");
+                });
+
+            modelBuilder.Entity("MatchHistoryManager.Models.Reward", b =>
+                {
+                    b.HasOne("MatchHistoryManager.Models.Match")
+                        .WithMany("Rewards")
+                        .HasForeignKey("MatchId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
