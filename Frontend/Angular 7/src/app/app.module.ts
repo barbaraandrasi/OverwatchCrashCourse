@@ -12,7 +12,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +30,8 @@ import { HeroComponent } from './heroes/hero/hero.component';
 import { GameComponent } from './game/game.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroService } from './shared/hero.service';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -53,6 +58,12 @@ import { HeroService } from './shared/hero.service';
     MatRadioModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatListModule,
+    MatSidenavModule,
+    MatIconModule,
     ToastrModule.forRoot({
       progressBar: true
     }),

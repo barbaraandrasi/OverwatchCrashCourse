@@ -18,3 +18,11 @@
       {{role.name}}
     </mat-option>
   </mat-select>
+
+  <mat-form-field>
+          <mat-select matInput formControlName="Role" placeholder="Role">
+            <ng-container *ngFor="let role of roles">
+              <mat-option value="{{role.id}}">{{role.name}}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>

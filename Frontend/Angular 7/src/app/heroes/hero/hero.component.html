@@ -19,7 +19,7 @@
             <a class="nav-link waves-light" mdbWavesEffect routerLink='/game'>About the Game</a>
         </li>
           <li class="nav-item active">
-              <a class="nav-link waves-light" mdbWavesEffect routerLink='/heroes/hero'>Heroes<span class="sr-only">(current)</span></a>
+              <a class="nav-link waves-light" mdbWavesEffect routerLink='/heroes'>Heroes<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
               <a class="nav-link waves-light" mdbWavesEffect routerLink='/userprofile'>User Details</a>
@@ -49,12 +49,20 @@
           <input formControlName="HeroName" matInput placeholder="Hero Name*">
           <mat-error>This field is mandatory.</mat-error>
         </mat-form-field>     
+        
+  <mat-form-field>
+    <mat-select matInput formControlName="Role" placeholder="Role">
+      <ng-container *ngFor="let role of roles">
+        <mat-option value="{{role.name}}">{{role.name}}</mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
           <div class="controls-container">
             <div class="add-bottom-padding">
               <mat-radio-group formControlName="Difficulty"> <p>Difficulty</p>
-                <mat-radio-button value="1">Easy</mat-radio-button>
-                <mat-radio-button value="2">Medium</mat-radio-button>
-                <mat-radio-button value="3">Hard</mat-radio-button>
+                <mat-radio-button value="Easy">Easy</mat-radio-button>
+                <mat-radio-button value="Medium">Medium</mat-radio-button>
+                <mat-radio-button value="Hard">Hard</mat-radio-button>
               </mat-radio-group>
             </div>
           </div>
@@ -64,13 +72,5 @@
         </div>
       </div>
 </form>
-<mat-form-field>
-  <mat-label>Role</mat-label>
-  <mat-select [(ngModel)]="selectedValue" name="role" [(value)]="selected">
-    <mat-option *ngFor="let role of roles" [value]="role.name">
-      {{role.name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
 </div>
 </div>

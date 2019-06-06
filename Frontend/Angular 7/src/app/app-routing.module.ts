@@ -8,6 +8,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { HeroComponent } from './heroes/hero/hero.component';
 import { GameComponent } from './game/game.component';
+import { HeroesComponent } from './heroes/heroes.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/user/login',pathMatch:'full'},
@@ -20,7 +21,8 @@ const routes: Routes = [
   },
   { path:'home',  component:HomeComponent, canActivate:[AuthGuard]},
   { path:'userprofile', component:UserprofileComponent, canActivate:[AuthGuard] },
-  { path:'heroes/hero', component:HeroComponent, canActivate:[AuthGuard] },
+  { path:'heroes', component:HeroesComponent, canActivate:[AuthGuard]} ,
+  { path: 'heroes/hero', component: HeroComponent, canActivate:[AuthGuard] },
   { path:'game', component:GameComponent, canActivate:[AuthGuard] }
 ];
 

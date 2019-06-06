@@ -4,14 +4,16 @@ using MatchHistoryManager.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MatchHistoryManager.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    partial class AuthenticationContextModelSnapshot : ModelSnapshot
+    [Migration("20190606184010_reset")]
+    partial class reset
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,13 +63,15 @@ namespace MatchHistoryManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Difficulty");
+                    b.Property<int>("Difficulty");
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("Role");
+                    b.Property<string>("RoleId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Heroes");
                 });
@@ -268,6 +272,13 @@ namespace MatchHistoryManager.Migrations
                     b.HasOne("MatchHistoryManager.Models.Game")
                         .WithMany("GameModes")
                         .HasForeignKey("GameId");
+                });
+
+            modelBuilder.Entity("MatchHistoryManager.Models.Hero", b =>
+                {
+                    b.HasOne("MatchHistoryManager.Models.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

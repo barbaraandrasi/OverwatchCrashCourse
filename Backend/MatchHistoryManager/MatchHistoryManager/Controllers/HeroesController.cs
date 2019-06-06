@@ -18,20 +18,20 @@ namespace MatchHistoryManager.Controllers
         public HeroesController(AuthenticationContext context)
         {
             _context = context;
-            Role role = new Role()
-            {
-                Name = "Damage",
-                Description = "faszom bele"
-            };
-            Hero hero = new Hero()
-            {
-                Name = "faszom",
-                Role = role,
-                Difficulty = 2
-            };
-            _context.Rolez.Add(role);      
-            _context.Heroes.Add(hero);
-            _context.SaveChanges();
+            //////////////Role role = new Role()
+            //////////////{
+            //////////////    Name = "Damage",
+            //////////////    Description = "faszom bele"
+            //////////////};
+            //////////////Hero hero = new Hero()
+            //////////////{
+            //////////////    Name = "faszom",
+            //////////////    Role = role,
+            //////////////    Difficulty = 2
+            //////////////};
+            //////////////_context.Rolez.Add(role);      
+            //////////////_context.Heroes.Add(hero);
+            //////////////_context.SaveChanges();
         }
 
         // GET: api/Heroes
@@ -87,15 +87,8 @@ namespace MatchHistoryManager.Controllers
 
         // POST: api/Heroes/Hero
         [HttpPost]
-        public async Task<ActionResult<Hero>> PostHero(HeroModel heroModel)
+        public async Task<ActionResult<Hero>> PostHero(Hero hero)
         {       
-            var role = await _context.Rolez.FindAsync(heroModel.Role);
-            Hero hero = new Hero()
-            {
-                Name = heroModel.Name,
-                Difficulty = heroModel.Difficulty,
-                Role = role
-            };
             _context.Heroes.Add(hero);
             await _context.SaveChangesAsync();
 

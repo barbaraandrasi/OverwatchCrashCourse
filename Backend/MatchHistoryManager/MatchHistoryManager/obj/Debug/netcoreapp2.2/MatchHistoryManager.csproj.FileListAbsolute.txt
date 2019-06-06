@@ -3,7 +3,6 @@ C:\Users\andra\Documents\Visual Studio 2017\Projects\overwatch-match-history-man
 C:\Users\andra\Documents\Visual Studio 2017\Projects\overwatch-match-history-manager\Backend\MatchHistoryManager\MatchHistoryManager\bin\Debug\netcoreapp2.2\MatchHistoryManager.runtimeconfig.dev.json
 C:\Users\andra\Documents\Visual Studio 2017\Projects\overwatch-match-history-manager\Backend\MatchHistoryManager\MatchHistoryManager\bin\Debug\netcoreapp2.2\MatchHistoryManager.dll
 C:\Users\andra\Documents\Visual Studio 2017\Projects\overwatch-match-history-manager\Backend\MatchHistoryManager\MatchHistoryManager\bin\Debug\netcoreapp2.2\MatchHistoryManager.pdb
-C:\Users\andra\Documents\Visual Studio 2017\Projects\overwatch-match-history-manager\Backend\MatchHistoryManager\MatchHistoryManager\obj\Debug\netcoreapp2.2\MatchHistoryManager.csprojAssemblyReference.cache
 C:\Users\andra\Documents\Visual Studio 2017\Projects\overwatch-match-history-manager\Backend\MatchHistoryManager\MatchHistoryManager\obj\Debug\netcoreapp2.2\MatchHistoryManager.csproj.CoreCompileInputs.cache
 C:\Users\andra\Documents\Visual Studio 2017\Projects\overwatch-match-history-manager\Backend\MatchHistoryManager\MatchHistoryManager\obj\Debug\netcoreapp2.2\MatchHistoryManager.RazorAssemblyInfo.cache
 C:\Users\andra\Documents\Visual Studio 2017\Projects\overwatch-match-history-manager\Backend\MatchHistoryManager\MatchHistoryManager\obj\Debug\netcoreapp2.2\MatchHistoryManager.RazorAssemblyInfo.cs

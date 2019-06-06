@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HeroComponent implements OnInit {
   roles;
-  selected;
+  
 
   constructor(private router:Router, private service: HeroService,private toastr: ToastrService) { }
 
@@ -33,20 +33,10 @@ export class HeroComponent implements OnInit {
     this.service.initializeFormGroup();
   }
   
- 
-    
- 
-
   onSubmit() {
-    var selectedId;
-    this.roles.forEach(role => {
-      if(role.name === this.selected && !selectedId){
-         selectedId = role.id;      
-      }
-    });
-    this.service.register(selectedId).subscribe(
+    this.service.register().subscribe(
       (res: any) => {
-        if (res.succeeded) {
+        if (!res.err) {
           this.service.form2.reset();
           this.toastr.success('New hero created!', 'Hero created succesfully!');
         }
@@ -55,5 +45,11 @@ export class HeroComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  roleConverter(roleId) {
+      switch(roleId) {
+        case 1: return 'Damage'
+      }
   }
 }

@@ -1,3 +1,4 @@
+    
 import { Injectable } from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import { HttpClient} from "@angular/common/http";
@@ -12,13 +13,14 @@ export class HeroService {
 
   form2: FormGroup = new FormGroup({
     HeroName: new FormControl('',Validators.required),
+    Role: new FormControl('',Validators.required),
     Difficulty: new FormControl('')
   })
 
-  register(selectedId) {
+  register() {
     var body = {
       name: this.form2.value.HeroName,
-      role: selectedId,
+      role: this.form2.value.Role,
       difficulty: this.form2.value.Difficulty
     };
     var headers: { 
@@ -30,6 +32,31 @@ export class HeroService {
 
   getRoles() {
     return this.http.get(this.BaseURI+'Roles');
+  }
+
+  getHeroes(){
+    return this.http.get(this.BaseURI + 'Heroes');
+  }
+
+  updateHero() {
+    var id;
+    var body = {
+      id: id,
+      name: this.form2.value.HeroName,
+      role: this.form2.value.Role,
+      difficulty: this.form2.value.Difficulty
+    };
+    var headers: { 
+      'Accept': 'application/json',
+      'Content-Type': 'application/json' 
+  }
+    return this.http.put(this.BaseURI + "Heroes/"+id, body, {headers} );
+  }
+
+  deleteHero() {
+    var id;
+
+    this.http.delete(this.BaseURI +'Heroes/'+id);
   }
 
   initializeFormGroup() {
