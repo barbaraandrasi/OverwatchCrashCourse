@@ -1,6 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 body, html {
     height: 100%;
+  }
+  body{
+      background-image: url("/assets/img/background.jpg");
+      height: 100%;
+      
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
   }
   .bg {
     /* The image used */
@@ -47,28 +58,6 @@ div.form-group.required>label:first-child:after{
     opacity:10;
 }
 
-.wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column; 
-  justify-content: center;
-  width: 100%;
-  padding: 20px;
-}
-
-.wrapped-div {
-  -webkit-border-radius: 10px 10px 10px 10px;
-  border-radius: 10px 10px 10px 10px;
-  background: #2e3137;
-  padding: 30px;
-  width: 90%;
-  max-width: 450px;
-  position: relative;
-  padding: 0px;
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-}
-
   /* Tabs */
 .tab-header{
     text-align: center;
@@ -108,4 +97,34 @@ div.form-group.required>label:first-child:after{
 
  li:hover {
   cursor: pointer;
+}
+
+mdb-navbar{
+  font-size: larger;
+}
+
+a.navbar-brand{
+  font-size: x-large;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.wrapped-div {
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background: #2e3137;
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  padding: 0px;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +8,7 @@ import { UserService } from '../shared/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router:Router, private service:UserService) { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }

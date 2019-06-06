@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-match',
-  templateUrl: './match.component.html',
+  selector: 'app-hero',
+  templateUrl: './hero.component.html',
   styles: []
 })
-export class MatchComponent implements OnInit {
+export class HeroComponent implements OnInit {
 
   constructor(private router:Router) { }
 

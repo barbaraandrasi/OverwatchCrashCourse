@@ -6,7 +6,8 @@ import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
 import { UserprofileComponent } from './userprofile/userprofile.component';
-import { MatchComponent } from './match/match.component';
+import { HeroComponent } from './hero/hero.component';
+import { GameComponent } from './game/game.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/user/login',pathMatch:'full'},
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   { path:'home',  component:HomeComponent, canActivate:[AuthGuard]},
   { path:'userprofile', component:UserprofileComponent, canActivate:[AuthGuard] },
-  { path:'match', component:MatchComponent, canActivate:[AuthGuard] }
+  { path:'hero', component:HeroComponent, canActivate:[AuthGuard] },
+  { path:'game', component:GameComponent, canActivate:[AuthGuard] }
 ];
 
 @NgModule({

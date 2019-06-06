@@ -1,0 +1,201 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="#">
+              <img src="/assets/img/overwatch.png" height="40" class="d-inline-block align-top" alt="">
+              Overwatch Crash Course
+  </a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink='/home'>Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link waves-light" mdbWavesEffect routerLink='/game'>About the Game<span class="sr-only">(current)</span></a>
+        </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink='/hero'>Heroes</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink='/userprofile'>User Details</a>
+          </li>
+      </ul>
+
+        <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                   <a class="nav-link waves-light" mdbWavesEffect (click)="onLogout()">Logout</a>
+              </li>
+        </ul>
+      <!-- Links -->
+
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
+<div class="wrapper">
+  <div class="wrapped-div">
+<h1><b><i>Welcome to the world of {{gameDetails.name}}!</i> </b></h1>
+      <p><i>
+          {{gameDetails.description}}
+      </i></p>
+      <img src="/assets/img/{{gameDetails.image}}" class="responsive" class="center">
+<h1><b><i>Available Game Modes</i> </b></h1>
+<div class="card-deck">
+    <!-- Card -->
+    <mdb-card>
+      <div class="view rgba-white-slight waves-light gameModeImage" mdbWavesEffect>
+        <!-- Card img -->
+        <mdb-card-img src="/assets/img/{{gameModes[5].image}}" class="rounded mb-0"></mdb-card-img>
+        <a>
+          <div class="mask"></div>
+        </a>
+      </div>
+      <!--Card content-->
+      <mdb-card-body>
+        <!--Title-->
+        <mdb-card-title>
+          <h4>
+              {{gameModes[5].name}}
+          </h4>
+        </mdb-card-title>
+  
+        <!--Text-->
+        <mdb-card-text> 
+            {{gameModes[5].description}}
+        </mdb-card-text>
+      </mdb-card-body>
+    </mdb-card>
+  
+    <!-- Card -->
+    <mdb-card>
+        <div class="view rgba-white-slight waves-light gameModeImage" mdbWavesEffect>
+          <!-- Card img -->
+          <mdb-card-img src="/assets/img/{{gameModes[0].image}}" class="rounded mb-0"></mdb-card-img>
+          <a>
+            <div class="mask"></div>
+          </a>
+        </div>
+        <!--Card content-->
+        <mdb-card-body>
+          <!--Title-->
+          <mdb-card-title>
+            <h4>
+                {{gameModes[0].name}}
+            </h4>
+          </mdb-card-title>
+    
+          <!--Text-->
+          <mdb-card-text> 
+              {{gameModes[0].description}}
+          </mdb-card-text>
+        </mdb-card-body>
+      </mdb-card>
+  
+      <mdb-card>
+          <div class="view rgba-white-slight waves-light gameModeImage" mdbWavesEffect>
+            <!-- Card img -->
+            <mdb-card-img src="/assets/img/{{gameModes[3].image}}" class="rounded mb-0"></mdb-card-img>
+            <a>
+              <div class="mask"></div>
+            </a>
+          </div>
+          <!--Card content-->
+          <mdb-card-body>
+            <!--Title-->
+            <mdb-card-title>
+              <h4>
+                  {{gameModes[3].name}}
+              </h4>
+            </mdb-card-title>
+      
+            <!--Text-->
+            <mdb-card-text> 
+                {{gameModes[3].description}}
+            </mdb-card-text>
+          </mdb-card-body>
+        </mdb-card>
+  </div>
+
+  <div class="card-deck">
+      <!-- Card -->
+      <mdb-card>
+        <div class="view rgba-white-slight waves-light gameModeImage" mdbWavesEffect>
+          <!-- Card img -->
+          <mdb-card-img src="/assets/img/{{gameModes[2].image}}" class="rounded mb-0"></mdb-card-img>
+          <a>
+            <div class="mask"></div>
+          </a>
+        </div>
+        <!--Card content-->
+        <mdb-card-body>
+          <!--Title-->
+          <mdb-card-title>
+            <h4>
+                {{gameModes[2].name}}
+            </h4>
+          </mdb-card-title>
+    
+          <!--Text-->
+          <mdb-card-text> 
+              {{gameModes[2].description}}
+          </mdb-card-text>
+        </mdb-card-body>
+      </mdb-card>
+    
+      <!-- Card -->
+      <mdb-card>
+          <div class="view rgba-white-slight waves-light gameModeImage" mdbWavesEffect>
+            <!-- Card img -->
+            <mdb-card-img src="/assets/img/{{gameModes[1].image}}" class="rounded mb-0"></mdb-card-img>
+            <a>
+              <div class="mask"></div>
+            </a>
+          </div>
+          <!--Card content-->
+          <mdb-card-body>
+            <!--Title-->
+            <mdb-card-title>
+              <h4>
+                  {{gameModes[1].name}}
+              </h4>
+            </mdb-card-title>
+      
+            <!--Text-->
+            <mdb-card-text> 
+                {{gameModes[1].description}}
+            </mdb-card-text>
+          </mdb-card-body>
+        </mdb-card>
+    
+        <mdb-card>
+            <div class="view rgba-white-slight waves-light gameModeImage" mdbWavesEffect>
+              <!-- Card img -->
+              <mdb-card-img src="/assets/img/{{gameModes[4].image}}" class="rounded mb-0"></mdb-card-img>
+              <a>
+                <div class="mask"></div>
+              </a>
+            </div>
+            <!--Card content-->
+            <mdb-card-body>
+              <!--Title-->
+              <mdb-card-title>
+                <h4>
+                    {{gameModes[4].name}}
+                </h4>
+              </mdb-card-title>
+        
+              <!--Text-->
+              <mdb-card-text> 
+                  {{gameModes[4].description}}
+              </mdb-card-text>
+            </mdb-card-body>
+          </mdb-card>
+    </div>
+</div>
+</div>

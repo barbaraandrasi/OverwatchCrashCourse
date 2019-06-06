@@ -8,6 +8,6 @@ namespace MatchHistoryManager.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public List<Match> MatchHistory { get; set; }
+
     }
 }

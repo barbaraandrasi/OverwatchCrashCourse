@@ -17,7 +17,8 @@ import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserprofileComponent } from './userprofile/userprofile.component';
-import { MatchComponent } from './match/match.component';
+import { HeroComponent } from './hero/hero.component';
+import { GameComponent } from './game/game.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MatchComponent } from './match/match.component';
     LoginComponent,
     HomeComponent,
     UserprofileComponent,
-    MatchComponent
+    HeroComponent,
+    GameComponent,
   ],
   imports: [
     BrowserModule,

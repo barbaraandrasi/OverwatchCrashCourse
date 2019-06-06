@@ -5,7 +5,8 @@ import { UserService } from '../shared/user.service';
 @Component({
   selector: 'app-userprofile',
   templateUrl: './userprofile.component.html',
-  styles: []
+  styles: [],
+  styleUrls:['./userprofile.component.css']
 })
 export class UserprofileComponent implements OnInit {
   userDetails;

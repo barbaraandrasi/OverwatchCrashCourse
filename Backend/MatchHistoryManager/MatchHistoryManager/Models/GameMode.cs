@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace MatchHistoryManager.Models
 {
-    public class Hero
+    public class GameMode
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
-        public Role Role { get; set; }
-        public int Difficulty { get; set; }
+        public string Description { get; set; }
+        public string Image {get;set;}
     }
 }

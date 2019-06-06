@@ -4,56 +4,22 @@ using MatchHistoryManager.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MatchHistoryManager.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    partial class AuthenticationContextModelSnapshot : ModelSnapshot
+    [Migration("20190604200340_Second")]
+    partial class Second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("MatchHistoryManager.Models.Game", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description");
-
-                    b.Property<string>("Image");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Games");
-                });
-
-            modelBuilder.Entity("MatchHistoryManager.Models.GameMode", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description");
-
-                    b.Property<string>("GameId");
-
-                    b.Property<string>("Image");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("GameModes");
-                });
 
             modelBuilder.Entity("MatchHistoryManager.Models.Hero", b =>
                 {
@@ -85,7 +51,7 @@ namespace MatchHistoryManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Rolez");
+                    b.ToTable("Role");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -262,14 +228,11 @@ namespace MatchHistoryManager.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-                });
+                    b.Property<int?>("asdId");
 
-            modelBuilder.Entity("MatchHistoryManager.Models.GameMode", b =>
-                {
-                    b.HasOne("MatchHistoryManager.Models.Game")
-                        .WithMany("GameModes")
-                        .HasForeignKey("GameId");
+                    b.HasIndex("asdId");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("MatchHistoryManager.Models.Hero", b =>
@@ -322,6 +285,13 @@ namespace MatchHistoryManager.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MatchHistoryManager.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("MatchHistoryManager.Models.Hero", "asd")
+                        .WithMany()
+                        .HasForeignKey("asdId");
                 });
 #pragma warning restore 612, 618
         }
