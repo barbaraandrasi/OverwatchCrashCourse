@@ -1,0 +1,76 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="#">
+              <img src="/assets/img/overwatch.png" height="40" class="d-inline-block align-top" alt="">
+              Overwatch Crash Course
+  </a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink='/home'>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect routerLink='/game'>About the Game</a>
+        </li>
+          <li class="nav-item active">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink='/heroes/hero'>Heroes<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink='/userprofile'>User Details</a>
+          </li>
+      </ul>
+
+        <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                   <a class="nav-link waves-light" mdbWavesEffect (click)="onLogout()">Logout</a>
+              </li>
+        </ul>
+      <!-- Links -->
+
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
+
+<p>This is the heroes page.</p>
+
+<div class="wrapper">
+<div class="wrapped-div">
+<form [formGroup]="service.form2" class="normal-form" (submit)="onSubmit()">
+      <div class="controls-container">
+        <mat-form-field>
+          <input formControlName="HeroName" matInput placeholder="Hero Name*">
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>     
+          <div class="controls-container">
+            <div class="add-bottom-padding">
+              <mat-radio-group formControlName="Difficulty"> <p>Difficulty</p>
+                <mat-radio-button value="1">Easy</mat-radio-button>
+                <mat-radio-button value="2">Medium</mat-radio-button>
+                <mat-radio-button value="3">Hard</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="service.form2.invalid">Submit</button>
+          <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+</form>
+<mat-form-field>
+  <mat-label>Role</mat-label>
+  <mat-select [(ngModel)]="selectedValue" name="role" [(value)]="selected">
+    <mat-option *ngFor="let role of roles" [value]="role.name">
+      {{role.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+</div>

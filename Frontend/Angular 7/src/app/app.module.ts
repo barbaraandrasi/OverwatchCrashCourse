@@ -7,6 +7,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatInputModule} from '@angular/material/input';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,8 +23,10 @@ import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserprofileComponent } from './userprofile/userprofile.component';
-import { HeroComponent } from './hero/hero.component';
+import { HeroComponent } from './heroes/hero/hero.component';
 import { GameComponent } from './game/game.component';
+import { HeroesComponent } from './heroes/heroes.component';
+import { HeroService } from './shared/hero.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +38,7 @@ import { GameComponent } from './game/game.component';
     UserprofileComponent,
     HeroComponent,
     GameComponent,
+    HeroesComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,13 +48,18 @@ import { GameComponent } from './game/game.component';
     BrowserAnimationsModule,
     MatMenuModule,
     MatButtonModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatFormFieldModule,
     ToastrModule.forRoot({
       progressBar: true
     }),
     FormsModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [UserService, {
+  providers: [HeroService, UserService, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
