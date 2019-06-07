@@ -4,16 +4,13 @@ import { HttpClient} from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class GameService {
+export class RoleService {
 
   constructor(private http: HttpClient) { }
   readonly BaseURI = 'http://localhost:63767/api/';
-
-  getGameDetails() {
-    return this.http.get(this.BaseURI + 'Games');
+  
+  getRoles() {
+    return this.http.get(this.BaseURI + 'Roles');
   }
 
-  getGameModes() {
-    return this.http.get(this.BaseURI + 'GameModes');
-  }
 }

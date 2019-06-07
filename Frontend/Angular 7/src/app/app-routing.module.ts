@@ -9,6 +9,7 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
 import { HeroComponent } from './heroes/hero/hero.component';
 import { GameComponent } from './game/game.component';
 import { HeroesComponent } from './heroes/heroes.component';
+import { RolesComponent } from './roles/roles.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/user/login',pathMatch:'full'},
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path:'userprofile', component:UserprofileComponent, canActivate:[AuthGuard] },
   { path:'heroes', component:HeroesComponent, canActivate:[AuthGuard]} ,
   { path: 'heroes/hero', component: HeroComponent, canActivate:[AuthGuard] },
-  { path:'game', component:GameComponent, canActivate:[AuthGuard] }
+  { path:'game', component:GameComponent, canActivate:[AuthGuard] },
+  { path:'roles', component:RolesComponent, canActivate:[AuthGuard] }
 ];
 
 @NgModule({

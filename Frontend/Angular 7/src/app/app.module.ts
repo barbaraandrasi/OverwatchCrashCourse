@@ -29,10 +29,11 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { HeroComponent } from './heroes/hero/hero.component';
 import { GameComponent } from './game/game.component';
-import { HeroesComponent } from './heroes/heroes.component';
 import { HeroService } from './shared/hero.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { HeroesComponent } from './heroes/heroes.component';
+import { RolesComponent } from './roles/roles.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MatSortModule } from '@angular/material/sort';
     UserprofileComponent,
     HeroComponent,
     GameComponent,
-    HeroesComponent
+    HeroesComponent,
+    RolesComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +80,7 @@ import { MatSortModule } from '@angular/material/sort';
     multi: true
   }],
   bootstrap: [AppComponent],
-  entryComponents:[HeroComponent]
+  entryComponents:[HeroComponent,
+]
 })
 export class AppModule { }

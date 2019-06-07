@@ -1,7 +1,8 @@
     
 import { Injectable } from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
-import { HttpClient} from "@angular/common/http";
+import { HttpClient, HttpParams} from "@angular/common/http";
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +13,28 @@ export class HeroService {
   readonly BaseURI = 'http://localhost:63767/api/';
 
   form2: FormGroup = new FormGroup({
+    id: new FormControl(''),
     HeroName: new FormControl('',Validators.required),
     Role: new FormControl('',Validators.required),
     Difficulty: new FormControl('')
   })
 
-  register() {
-    var body = {
-      name: this.form2.value.HeroName,
-      role: this.form2.value.Role,
-      difficulty: this.form2.value.Difficulty
-    };
-    var headers: { 
-      'Accept': 'application/json',
-      'Content-Type': 'application/json' 
-  }
-    return this.http.post(this.BaseURI+'Heroes', body, { headers });
-  }
+ 
+
+ createHero() {
+  var body = {
+    name: this.form2.value.HeroName,
+    role: this.form2.value.Role,
+    difficulty: this.form2.value.Difficulty
+  };
+  var headers: { 
+    'Accept': 'application/json',
+    'Content-Type': 'application/json' 
+}
+  return this.http.post(this.BaseURI+'Heroes', body, { headers });
+ }
+ 
+
 
   getRoles() {
     return this.http.get(this.BaseURI+'Roles');
@@ -38,8 +44,7 @@ export class HeroService {
     return this.http.get(this.BaseURI + 'Heroes');
   }
 
-  updateHero() {
-    var id;
+  updateHero(id) {
     var body = {
       id: id,
       name: this.form2.value.HeroName,
@@ -52,18 +57,40 @@ export class HeroService {
   }
     return this.http.put(this.BaseURI + "Heroes/"+id, body, {headers} );
   }
-
-  deleteHero() {
-    var id;
-
-    this.http.delete(this.BaseURI +'Heroes/'+id);
+  
+  persist() {
+    if(this.form2.value.id) {
+     return this.updateHero(this.form2.value.id);
+    } else {
+    return this.createHero();
+    }
   }
 
-  initializeFormGroup() {
+  deleteHero(heroId) {
+    var uri = this.BaseURI + 'heroes/' +heroId;
+    const headers =  {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json' 
+    }
+
+     return this.http.delete(this.BaseURI +'Heroes/'+heroId, {headers});
+      }
+
+ clear() {
+  this.form2.setValue({
+    id : this.form2.value.id,
+    HeroName:'',
+    Role:'',
+    Difficulty: '',
+  });
+ }
+
+  initializeFormGroup(hero) {
     this.form2.setValue({
-      HeroName: '',
-      Role: '',
-      Difficulty: '',
+      id : hero ? hero.id:null,
+      HeroName: hero ? hero.name:'',
+      Role: hero ? hero.role:'',
+      Difficulty:hero ? hero.difficulty:'',
     });
 }
 }

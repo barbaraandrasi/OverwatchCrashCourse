@@ -40,12 +40,24 @@ export class HeroesComponent implements OnInit {
     )
   }
 onCreate(){
-  this.service.initializeFormGroup();
+  this.service.initializeFormGroup(null);
   const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "50%";
   this.dialog.open(HeroComponent, dialogConfig);
 }
 
+onEdit(row) {
+  this.service.initializeFormGroup(row);
+  const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+  this.dialog.open(HeroComponent, dialogConfig);
+}
+
+onDelete(row) {
+  this.service.deleteHero(row.id).subscribe(
+    () => console.log("user deleted")
+    );
+}
 }

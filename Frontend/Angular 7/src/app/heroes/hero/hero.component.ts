@@ -20,7 +20,6 @@ export class HeroComponent implements OnInit {
      public dialogRef: MatDialogRef<HeroComponent>) { }
 
   ngOnInit() {
-    this.service.form2.reset();
     this.service.getRoles().subscribe(
       res => this.roles = res,
       err => console.log(err)
@@ -33,14 +32,17 @@ export class HeroComponent implements OnInit {
   }
 
   onClear() {
-    this.service.form2.reset();
-    this.service.initializeFormGroup();
+    this.service.clear();
   }
   
   onSubmit() {
-    this.service.register().subscribe(
+    this.service.persist().subscribe(
       (res: any) => {
-        if (!res.err) {
+        if (!res) {
+          this.service.form2.reset();
+          this.toastr.success('Modified!', 'Hero modified succesfully!');
+          this.onClose();
+        } else if (!res.err) {
           this.service.form2.reset();
           this.toastr.success('New hero created!', 'Hero created succesfully!');
           this.onClose();
@@ -54,13 +56,7 @@ export class HeroComponent implements OnInit {
 
   onClose() {
     this.service.form2.reset();
-    this.service.initializeFormGroup();
+    this.service.initializeFormGroup(null);
     this.dialogRef.close();
-  }
-
-  roleConverter(roleId) {
-      switch(roleId) {
-        case 1: return 'Damage'
-      }
   }
 }
