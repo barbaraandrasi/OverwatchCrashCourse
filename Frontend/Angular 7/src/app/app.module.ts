@@ -16,6 +16,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,7 +44,7 @@ import { MatSortModule } from '@angular/material/sort';
     UserprofileComponent,
     HeroComponent,
     GameComponent,
-    HeroesComponent,
+    HeroesComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +65,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatListModule,
     MatSidenavModule,
     MatIconModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       progressBar: true
     }),
@@ -75,6 +77,7 @@ import { MatSortModule } from '@angular/material/sort';
     useClass: AuthInterceptor,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[HeroComponent]
 })
 export class AppModule { }

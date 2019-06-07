@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeroService } from 'src/app/shared/hero.service';
 import { ToastrService } from 'ngx-toastr';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-hero',
@@ -13,7 +14,10 @@ export class HeroComponent implements OnInit {
   roles;
   
 
-  constructor(private router:Router, private service: HeroService,private toastr: ToastrService) { }
+  constructor(private router:Router,
+     private service: HeroService,
+     private toastr: ToastrService,
+     public dialogRef: MatDialogRef<HeroComponent>) { }
 
   ngOnInit() {
     this.service.form2.reset();
@@ -39,12 +43,19 @@ export class HeroComponent implements OnInit {
         if (!res.err) {
           this.service.form2.reset();
           this.toastr.success('New hero created!', 'Hero created succesfully!');
+          this.onClose();
         }
       },
       err => {
         console.log(err);
       }
     );
+  }
+
+  onClose() {
+    this.service.form2.reset();
+    this.service.initializeFormGroup();
+    this.dialogRef.close();
   }
 
   roleConverter(roleId) {

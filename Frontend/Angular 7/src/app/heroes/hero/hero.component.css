@@ -51,3 +51,9 @@ mat-radio-group mat-radio-button{
     width: 100%;
     padding: 20px;
   }
+
+  
+  mat-footer-row mat-footer-cell{
+    justify-content: center;
+    font-style: italic;
+}
