@@ -7,10 +7,6 @@
     padding: 20px;
   }
 
-  .gameModeImage {
-    cursor: default;
-  }
-
   .wrapped-div {
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
@@ -54,10 +50,22 @@
  mdb-card-body
   {
       text-align: center;
+      background-color:rgb(167, 85, 31);
+      color:white;
   }
 
   img.center
   {
-    width: 70%;
+
+    width: -webkit-fill-available;
     height: auto;
   }
+
+  .blackimg {
+    background-color: black;
+  }
+  img {
+    opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+  }
+

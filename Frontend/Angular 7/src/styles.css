@@ -55,7 +55,8 @@ div.form-group.required>label:first-child:after{
 }
 
 #toast-container > div {
-    opacity:10;
+    opacity:0.9;
+    background-color: green;
 }
 
   /* Tabs */

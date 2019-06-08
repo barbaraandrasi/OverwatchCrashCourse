@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MatchHistoryManager.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20190529204426_Initial")]
+    [Migration("20190607201704_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,84 +21,73 @@ namespace MatchHistoryManager.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MatchHistoryManager.Models.Game", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Image");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Games");
+                });
+
+            modelBuilder.Entity("MatchHistoryManager.Models.GameMode", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("GameId");
+
+                    b.Property<string>("Image");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("GameModes");
+                });
+
             modelBuilder.Entity("MatchHistoryManager.Models.Hero", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Difficulty");
-
-                    b.Property<bool>("Me");
+                    b.Property<string>("Difficulty");
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("Role");
-
-                    b.Property<int?>("TeamId");
+                    b.Property<string>("Role");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TeamId");
 
                     b.ToTable("Heroes");
                 });
 
-            modelBuilder.Entity("MatchHistoryManager.Models.Match", b =>
+            modelBuilder.Entity("MatchHistoryManager.Models.Role", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
+                    b.Property<string>("Description");
 
-                    b.Property<int?>("EnemyTeamId");
+                    b.Property<string>("Image");
 
-                    b.Property<DateTime>("MatchDateTime");
-
-                    b.Property<int?>("MyTeamId");
-
-                    b.Property<int>("Result");
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("EnemyTeamId");
-
-                    b.HasIndex("MyTeamId");
-
-                    b.ToTable("Matches");
-                });
-
-            modelBuilder.Entity("MatchHistoryManager.Models.Reward", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Category");
-
-                    b.Property<int?>("MatchId");
-
-                    b.Property<int>("Medal");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MatchId");
-
-                    b.ToTable("Rewards");
-                });
-
-            modelBuilder.Entity("MatchHistoryManager.Models.Team", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Teams");
+                    b.ToTable("Rolez");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -278,33 +267,11 @@ namespace MatchHistoryManager.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
-            modelBuilder.Entity("MatchHistoryManager.Models.Hero", b =>
+            modelBuilder.Entity("MatchHistoryManager.Models.GameMode", b =>
                 {
-                    b.HasOne("MatchHistoryManager.Models.Team")
-                        .WithMany("Heroes")
-                        .HasForeignKey("TeamId");
-                });
-
-            modelBuilder.Entity("MatchHistoryManager.Models.Match", b =>
-                {
-                    b.HasOne("MatchHistoryManager.Models.ApplicationUser")
-                        .WithMany("MatchHistory")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("MatchHistoryManager.Models.Team", "EnemyTeam")
-                        .WithMany()
-                        .HasForeignKey("EnemyTeamId");
-
-                    b.HasOne("MatchHistoryManager.Models.Team", "MyTeam")
-                        .WithMany()
-                        .HasForeignKey("MyTeamId");
-                });
-
-            modelBuilder.Entity("MatchHistoryManager.Models.Reward", b =>
-                {
-                    b.HasOne("MatchHistoryManager.Models.Match")
-                        .WithMany("Rewards")
-                        .HasForeignKey("MatchId");
+                    b.HasOne("MatchHistoryManager.Models.Game")
+                        .WithMany("GameModes")
+                        .HasForeignKey("GameId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -49,15 +49,46 @@ namespace MatchHistoryManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Teams",
+                name: "Games",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Teams", x => x.Id);
+                    table.PrimaryKey("PK_Games", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Heroes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    Role = table.Column<string>(nullable: true),
+                    Difficulty = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Heroes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rolez",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rolez", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -167,80 +198,22 @@ namespace MatchHistoryManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Heroes",
+                name: "GameModes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Role = table.Column<int>(nullable: false),
-                    Difficulty = table.Column<int>(nullable: false),
-                    Me = table.Column<bool>(nullable: false),
-                    TeamId = table.Column<int>(nullable: true)
+                    Description = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true),
+                    GameId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Heroes", x => x.Id);
+                    table.PrimaryKey("PK_GameModes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Heroes_Teams_TeamId",
-                        column: x => x.TeamId,
-                        principalTable: "Teams",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Matches",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Result = table.Column<int>(nullable: false),
-                    MyTeamId = table.Column<int>(nullable: true),
-                    EnemyTeamId = table.Column<int>(nullable: true),
-                    MatchDateTime = table.Column<DateTime>(nullable: false),
-                    ApplicationUserId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Matches", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Matches_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Matches_Teams_EnemyTeamId",
-                        column: x => x.EnemyTeamId,
-                        principalTable: "Teams",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Matches_Teams_MyTeamId",
-                        column: x => x.MyTeamId,
-                        principalTable: "Teams",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Rewards",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Category = table.Column<int>(nullable: false),
-                    Medal = table.Column<int>(nullable: false),
-                    MatchId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Rewards", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Rewards_Matches_MatchId",
-                        column: x => x.MatchId,
-                        principalTable: "Matches",
+                        name: "FK_GameModes_Games_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Games",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -285,29 +258,9 @@ namespace MatchHistoryManager.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Heroes_TeamId",
-                table: "Heroes",
-                column: "TeamId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Matches_ApplicationUserId",
-                table: "Matches",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Matches_EnemyTeamId",
-                table: "Matches",
-                column: "EnemyTeamId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Matches_MyTeamId",
-                table: "Matches",
-                column: "MyTeamId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Rewards_MatchId",
-                table: "Rewards",
-                column: "MatchId");
+                name: "IX_GameModes_GameId",
+                table: "GameModes",
+                column: "GameId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -328,22 +281,22 @@ namespace MatchHistoryManager.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "GameModes");
+
+            migrationBuilder.DropTable(
                 name: "Heroes");
 
             migrationBuilder.DropTable(
-                name: "Rewards");
+                name: "Rolez");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Matches");
-
-            migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Teams");
+                name: "Games");
         }
     }
 }

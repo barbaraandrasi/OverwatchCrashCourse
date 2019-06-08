@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import { HttpClient, HttpParams} from "@angular/common/http";
 import { identifierModuleUrl } from '@angular/compiler';
+import { HeroDto } from '../heroes/heroes.component';
 
 @Injectable({
   providedIn: 'root'
@@ -93,4 +94,11 @@ export class HeroService {
       Difficulty:hero ? hero.difficulty:'',
     });
 }
+
+/*refreshList(){
+  this.http.get(this.BaseURI + 'Heroes')
+  .toPromise()
+  .then(res => this.list = res as HeroDto[]);
+}
+*/
 }
