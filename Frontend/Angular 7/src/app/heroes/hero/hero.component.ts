@@ -25,14 +25,10 @@ export class HeroComponent implements OnInit {
       err => console.log(err)
     )
   }
-
+  
   onLogout(){
     localStorage.removeItem('token');
     this.router.navigate(['/user/login']);
-  }
-
-  onClear() {
-    this.service.clear();
   }
   
   onSubmit() {
@@ -40,7 +36,7 @@ export class HeroComponent implements OnInit {
       (res: any) => {
         if (!res) {
           this.service.form2.reset();
-          this.toastr.success('Modified!', 'Hero modified succesfully!');
+          this.toastr.success('Hero updated!', 'Hero modified succesfully!');
           this.onClose();
         } else if (!res.err) {
           this.service.form2.reset();

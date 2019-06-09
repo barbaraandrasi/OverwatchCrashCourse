@@ -1,0 +1,58 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .wrapped-div {
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    background: rgb(255, 255, 255);
+    max-width: 60%;
+    position: relative;
+    align-items: center;
+    padding:4%;
+  }
+
+  h1{
+    padding:10px;
+    text-align: center;
+    font-size: -webkit-xxx-large;
+}
+
+p{
+  font-weight: 400;
+  font-size: 120%;
+  padding-left:50px;
+  padding-right:50px;
+  text-align: center;
+  padding-bottom:20px;
+}
+
+#para
+{
+  font-weight: 500;
+  font-size: 180%;
+  text-align: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  width: 50%;
+  height: auto;
+} 
+
+#myprops{
+  width: 40%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+}

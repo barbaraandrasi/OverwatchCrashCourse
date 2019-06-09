@@ -2,7 +2,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary">
 
             <!-- Navbar brand -->
-            <mdb-navbar-brand><a class="navbar-brand" href="#">
+            <mdb-navbar-brand><a class="navbar-brand" routerLink='/home'>
                         <img src="/assets/img/overwatch.png" height="40" class="d-inline-block align-top" alt="">
                         Overwatch Crash Course
             </a></mdb-navbar-brand>
@@ -12,9 +12,6 @@
         
                 <!-- Links -->
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link waves-light" mdbWavesEffect routerLink='/home'>Home<span class="sr-only">(current)</span></a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link waves-light" mdbWavesEffect routerLink='/game'>About the Game</a>
                     </li>
@@ -42,4 +39,14 @@
         </mdb-navbar>
         <!--/.Navbar-->
 
-        <p>This is the home page.</p>
+<div class="wrapper">
+    <div class="wrapped-div">
+        <h1><img src="/assets/img/welcome.png" class="responsive" id="myprops"></h1>
+        
+        <p> This site's purpose is to introduce you game Overwatch and it's basic features.
+        Learn about the heroes you can play with, their roles and the game modes.
+        You are able to maintain the Heroes database: add new Hero, modify or delete the existing ones.
+        </p>    
+        <p id="para">Enjoy exploring!</p>
+    </div>
+</div>

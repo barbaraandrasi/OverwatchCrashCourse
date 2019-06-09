@@ -50,7 +50,7 @@
  mdb-card-body
   {
       text-align: center;
-      background-color:rgb(167, 85, 31);
+      background-color:#58534d;
       color:white;
   }
 
@@ -62,8 +62,9 @@
   }
 
   .blackimg {
-    background-color: black;
+    background-color: midnightblue;
   }
+
   img {
     opacity: 0.8;
     filter: alpha(opacity=80); /* For IE8 and earlier */

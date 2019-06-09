@@ -14,7 +14,7 @@ div.container{
 
 .controls-container{
     width: 100%;
-    padding: 5%;    
+    padding: 1%;    
 }
 
 .controls-container > * {
@@ -40,7 +40,7 @@ mat-radio-group mat-radio-button{
     max-width: 60%;
     position: relative;
     align-items: center;
-    padding:inherit;
+    padding:inherit
   }
 
   .wrapper {

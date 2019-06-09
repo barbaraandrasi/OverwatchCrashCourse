@@ -30,7 +30,6 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
 import { HeroComponent } from './heroes/hero/hero.component';
 import { GameComponent } from './game/game.component';
 import { HeroService } from './shared/hero.service';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HeroesComponent } from './heroes/heroes.component';
 import { RolesComponent } from './roles/roles.component';
@@ -62,7 +61,6 @@ import { RolesComponent } from './roles/roles.component';
     MatSelectModule,
     MatFormFieldModule,
     MatTableModule,
-    MatPaginatorModule,
     MatSortModule,
     MatListModule,
     MatSidenavModule,
@@ -80,7 +78,7 @@ import { RolesComponent } from './roles/roles.component';
     multi: true
   }],
   bootstrap: [AppComponent],
-  entryComponents:[HeroComponent,
+  entryComponents:[HeroesComponent
 ]
 })
 export class AppModule { }

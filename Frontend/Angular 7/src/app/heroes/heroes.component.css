@@ -1,18 +1,18 @@
 table{
     width: 100%;
+    scroll-behavior: auto;
 }
 .wrapper {
     display: flex !important;
     flex-direction: column !important; 
     justify-content: center !important;
     width: 100% !important;
-    padding-top: 100px !important;
+    padding-top: 50px !important;
     padding-left: 300px !important;
     padding-right: 300px !important;
   }
 
   .mat-table {
-    overflow: auto;
     max-height: 700px;
   }
 
@@ -37,3 +37,18 @@ td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:la
   padding-right: 0px !important;
 }
 
+
+#createButton {
+    display: inline-flex;
+    font-weight: 600;
+    font-size: 16px;
+    margin-left: 0 !important;
+    margin-bottom: 5px;
+}
+
+.tableContainer {
+    height: 500px;
+    width: 100%;
+    overflow: auto;
+    border: 1px solid black;
+}

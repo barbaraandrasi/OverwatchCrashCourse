@@ -2,8 +2,6 @@
 import { Injectable } from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import { HttpClient, HttpParams} from "@angular/common/http";
-import { identifierModuleUrl } from '@angular/compiler';
-import { HeroDto } from '../heroes/heroes.component';
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +32,6 @@ export class HeroService {
 }
   return this.http.post(this.BaseURI+'Heroes', body, { headers });
  }
- 
-
 
   getRoles() {
     return this.http.get(this.BaseURI+'Roles');
@@ -77,14 +73,6 @@ export class HeroService {
      return this.http.delete(this.BaseURI +'Heroes/'+heroId, {headers});
       }
 
- clear() {
-  this.form2.setValue({
-    id : this.form2.value.id,
-    HeroName:'',
-    Role:'',
-    Difficulty: '',
-  });
- }
 
   initializeFormGroup(hero) {
     this.form2.setValue({
@@ -95,10 +83,4 @@ export class HeroService {
     });
 }
 
-/*refreshList(){
-  this.http.get(this.BaseURI + 'Heroes')
-  .toPromise()
-  .then(res => this.list = res as HeroDto[]);
-}
-*/
 }

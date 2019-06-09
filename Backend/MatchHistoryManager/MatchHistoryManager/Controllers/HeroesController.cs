@@ -18,20 +18,6 @@ namespace MatchHistoryManager.Controllers
         public HeroesController(AuthenticationContext context)
         {
             _context = context;
-            //////////////Role role = new Role()
-            //////////////{
-            //////////////    Name = "Damage",
-            //////////////    Description = "faszom bele"
-            //////////////};
-            //////////////Hero hero = new Hero()
-            //////////////{
-            //////////////    Name = "faszom",
-            //////////////    Role = role,
-            //////////////    Difficulty = 2
-            //////////////};
-            //////////////_context.Rolez.Add(role);      
-            //////////////_context.Heroes.Add(hero);
-            //////////////_context.SaveChanges();
         }
 
         // GET: api/Heroes

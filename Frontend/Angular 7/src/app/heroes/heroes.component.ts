@@ -1,18 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { HeroService } from '../shared/hero.service';
-import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatDialog, MatDialogConfig } from "@angular/material";
+import { MatDialog, MatDialogConfig, MatTableDataSource } from "@angular/material";
 import { HeroComponent } from './hero/hero.component';
-
-export class HeroDto {
-  id: string;
-  name: string;
-  roleName: string;
-  roleId: string;
-  difficulty: string
-}
-
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-heroes',
@@ -23,41 +14,61 @@ export class HeroesComponent implements OnInit {
   displayedColumns: string[] = ['name', 'role', 'difficulty', 'actions'];
   dataSource;
 
-  constructor(private service: HeroService, private dialog: MatDialog) { }
+  constructor(private service: HeroService, private toastr: ToastrService, private router:Router, private dialog: MatDialog) { }
 
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  searchkey: string;
 
   ngOnInit() {
-    this.service.getHeroes().subscribe(
-      res => {
-        this.dataSource = res;
-        this.dataSource.sort(x=> x. Name);
-        this.dataSource.paginator=this.paginator;
-      },
-      err => console.log(err)
-    )
+    this.resetDatasource();
   }
+
 onCreate(){
   this.service.initializeFormGroup(null);
   const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "50%";
+    dialogConfig.width = "30%";
   this.dialog.open(HeroComponent, dialogConfig);
+  this.dialog.afterAllClosed.subscribe(() => {
+    this.resetDatasource();
+   })
 }
 
 onEdit(row) {
   this.service.initializeFormGroup(row);
   const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "50%";
+    dialogConfig.width = "30%";
   this.dialog.open(HeroComponent, dialogConfig);
+   this.dialog.afterAllClosed.subscribe(() => {
+       this.resetDatasource();
+      })
 }
 
 onDelete(row) {
-  this.service.deleteHero(row.id).subscribe(
-    () => console.log("user deleted")
-    );
+  if (confirm('Are you sure to delete this record ?')) {
+    this.service.deleteHero(row.id)
+      .subscribe(res => {
+        debugger;
+        this.toastr.warning('Hero removed!', 'Hero deleted successfully!');
+        this.resetDatasource();
+      },
+        err => {
+          debugger;
+          console.log(err);
+        })
+  }
 }
+
+  resetDatasource() {
+    this.service.getHeroes().subscribe(
+      res => {
+        this.dataSource = res;
+      },
+      err => console.log(err)
+    )
+  }
+
+  onLogout(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/user/login']);
+  }
 }

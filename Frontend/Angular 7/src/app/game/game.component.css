@@ -7,10 +7,6 @@
     padding: 20px;
   }
 
-  .gameModeImage {
-    cursor: default;
-  }
-
   .wrapped-div {
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
