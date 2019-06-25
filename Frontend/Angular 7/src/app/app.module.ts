@@ -17,6 +17,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -66,6 +68,8 @@ import { RolesComponent } from './roles/roles.component';
     MatSidenavModule,
     MatIconModule,
     MatDialogModule,
+    MatCardModule,
+    NgxPaginationModule,
     ToastrModule.forRoot({
       progressBar: true
     }),

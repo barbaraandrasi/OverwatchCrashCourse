@@ -1,7 +1,7 @@
-    
+
 import { Injectable } from '@angular/core';
-import {FormGroup, FormControl, Validators} from "@angular/forms";
-import { HttpClient, HttpParams} from "@angular/common/http";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { HttpClient, HttpParams } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -13,31 +13,32 @@ export class HeroService {
 
   form2: FormGroup = new FormGroup({
     id: new FormControl(''),
-    HeroName: new FormControl('',Validators.required),
-    Role: new FormControl('',Validators.required),
+    HeroName: new FormControl('', Validators.required),
+    ImageName: new FormControl('', Validators.required),
+    Role: new FormControl('', Validators.required),
     Difficulty: new FormControl('')
   })
 
- 
 
- createHero() {
-  var body = {
-    name: this.form2.value.HeroName,
-    role: this.form2.value.Role,
-    difficulty: this.form2.value.Difficulty
-  };
-  var headers: { 
-    'Accept': 'application/json',
-    'Content-Type': 'application/json' 
-}
-  return this.http.post(this.BaseURI+'Heroes', body, { headers });
- }
 
-  getRoles() {
-    return this.http.get(this.BaseURI+'Roles');
+  createHero() {
+    var body = {
+      name: this.form2.value.HeroName,
+      role: this.form2.value.Role,
+      difficulty: this.form2.value.Difficulty
+    };
+    var headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    return this.http.post(this.BaseURI + 'Heroes', body, { headers });
   }
 
-  getHeroes(){
+  getRoles() {
+    return this.http.get(this.BaseURI + 'Roles');
+  }
+
+  getHeroes() {
     return this.http.get(this.BaseURI + 'Heroes');
   }
 
@@ -48,39 +49,47 @@ export class HeroService {
       role: this.form2.value.Role,
       difficulty: this.form2.value.Difficulty
     };
-    var headers: { 
+    var headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json' 
+      'Content-Type': 'application/json'
+    }
+    return this.http.put(this.BaseURI + "Heroes/" + id, body, { headers });
   }
-    return this.http.put(this.BaseURI + "Heroes/"+id, body, {headers} );
-  }
-  
+
   persist() {
-    if(this.form2.value.id) {
-     return this.updateHero(this.form2.value.id);
+    if (this.form2.value.id) {
+      return this.updateHero(this.form2.value.id);
     } else {
-    return this.createHero();
+      return this.createHero();
     }
   }
 
   deleteHero(heroId) {
-    var uri = this.BaseURI + 'heroes/' +heroId;
-    const headers =  {
+    var uri = this.BaseURI + 'heroes/' + heroId;
+    const headers = {
       'Accept': 'application/json',
-      'Content-Type': 'application/json' 
+      'Content-Type': 'application/json'
     }
 
-     return this.http.delete(this.BaseURI +'Heroes/'+heroId, {headers});
-      }
+    return this.http.delete(this.BaseURI + 'Heroes/' + heroId, { headers });
+  }
 
+  getOneHero(id) {
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    return this.http.get(this.BaseURI + 'Heroes/' + id, { headers });
+  }
 
-  initializeFormGroup(hero) {
+  initializeFormGroup(heroDetail) {
     this.form2.setValue({
-      id : hero ? hero.id:null,
-      HeroName: hero ? hero.name:'',
-      Role: hero ? hero.role:'',
-      Difficulty:hero ? hero.difficulty:'',
+      id: heroDetail.id,
+      HeroName: heroDetail.name,
+      ImageName: heroDetail.image,
+      Role: heroDetail.role,
+      Difficulty: heroDetail.difficulty
     });
-}
+  }
 
 }

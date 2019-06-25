@@ -23,7 +23,8 @@ const routes: Routes = [
   { path:'home',  component:HomeComponent, canActivate:[AuthGuard]},
   { path:'userprofile', component:UserprofileComponent, canActivate:[AuthGuard] },
   { path:'heroes', component:HeroesComponent, canActivate:[AuthGuard]} ,
-  { path: 'heroes/hero', component: HeroComponent, canActivate:[AuthGuard] },
+  { path:'heroes/hero/:id', component: HeroComponent, canActivate:[AuthGuard] },
+  { path:'heroes/hero', component: HeroComponent, canActivate:[AuthGuard] },
   { path:'game', component:GameComponent, canActivate:[AuthGuard] },
   { path:'roles', component:RolesComponent, canActivate:[AuthGuard] }
 ];

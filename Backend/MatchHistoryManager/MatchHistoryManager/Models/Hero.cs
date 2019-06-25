@@ -12,5 +12,6 @@ namespace MatchHistoryManager.Models
         public string Name { get; set; }
         public string Role { get; set; }
         public string Difficulty { get; set; }
+        public string Image { get; set; }
     }
 }

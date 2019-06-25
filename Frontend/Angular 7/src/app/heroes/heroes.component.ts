@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig, MatTableDataSource } from "@angular/materia
 import { HeroComponent } from './hero/hero.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-heroes',
@@ -11,60 +12,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'role', 'difficulty', 'actions'];
   dataSource;
+  subscribedParam = "initial value";
 
-  constructor(private service: HeroService, private toastr: ToastrService, private router:Router, private dialog: MatDialog) { }
+  constructor(private service: HeroService, private toastr: ToastrService, private router:Router, private route: ActivatedRoute) { 
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1,
+      totalItems: null
+    };
+  }
 
+  config: any;
+
+  
+  pageChanged(event){
+    this.config.currentPage = event;
+  }
 
   ngOnInit() {
     this.resetDatasource();
+    this.route.paramMap.subscribe(params => {
+      this.subscribedParam = params.get("id")
+    })
   }
 
-onCreate(){
-  this.service.initializeFormGroup(null);
-  const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "30%";
-  this.dialog.open(HeroComponent, dialogConfig);
-  this.dialog.afterAllClosed.subscribe(() => {
-    this.resetDatasource();
-   })
-}
-
-onEdit(row) {
-  this.service.initializeFormGroup(row);
-  const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "30%";
-  this.dialog.open(HeroComponent, dialogConfig);
-   this.dialog.afterAllClosed.subscribe(() => {
-       this.resetDatasource();
-      })
-}
-
-onDelete(row) {
-  if (confirm('Are you sure to delete this record ?')) {
-    this.service.deleteHero(row.id)
-      .subscribe(res => {
-        debugger;
-        this.toastr.warning('Hero removed!', 'Hero deleted successfully!');
-        this.resetDatasource();
-      },
-        err => {
-          debugger;
-          console.log(err);
-        })
+  onCreate(){
+    this.router.navigate(['heroes/hero']);
+    this.service.form2.reset();
   }
-}
 
   resetDatasource() {
     this.service.getHeroes().subscribe(
       res => {
         this.dataSource = res;
+        this.config.totalItems = this.dataSource.count
       },
       err => console.log(err)
     )
+  }
+
+  goto(id: string): void {
+    this.router.navigate(['heroes/hero', id]);
   }
 
   onLogout(){

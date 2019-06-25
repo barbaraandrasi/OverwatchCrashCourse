@@ -1,10 +1,57 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary">
 
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" routerLink='/home'>
+              <img src="/assets/img/overwatch.png" height="40" class="d-inline-block align-top" alt="">
+              Overwatch Crash Course
+  </a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">    
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect routerLink='/game'>About the Game</a>
+        </li>
+          <li class="nav-item active">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink='/heroes'>Heroes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect routerLink='/roles'>Roles</a>
+        </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink='/userprofile'>User Details</a>
+          </li>
+      </ul>
+
+        <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                   <a class="nav-link waves-light" mdbWavesEffect (click)="onLogout()">Logout</a>
+              </li>
+        </ul>
+      <!-- Links -->
+
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
 <form [formGroup]="service.form2" class="normal-form" (submit)="onSubmit()">
+    <button id="createButton" type="button" class="btn btn-danger mr-auto" (click)="back()">
+        Back
+      </button>
       <div class="controls-container">
         <mat-form-field>
           <input formControlName="HeroName" matInput placeholder="Hero Name*">
           <mat-error>This field is mandatory.</mat-error>
-        </mat-form-field>     
+        </mat-form-field>   
+        
+            <mat-form-field>
+              <input formControlName="ImageName" matInput placeholder="Image Name*">
+              <mat-error>This field is mandatory.</mat-error>
+            </mat-form-field>
         
   <mat-form-field>
     <mat-select matInput formControlName="Role" placeholder="Role">
@@ -24,7 +71,7 @@
           </div>
           <div class="button-row">
           <button mat-raised-button style="width: 20%" color="primary" type="submit" [disabled]="service.form2.invalid">Submit</button>
-          <button mat-raised-button style="width: 20%" color="warn" type="reset">Clear</button>
+          <button mat-raised-button style="width: 20%" color="warn" (click)="onDelete(heroDetail)">Delete</button>
         </div>
       </div>
 </form>

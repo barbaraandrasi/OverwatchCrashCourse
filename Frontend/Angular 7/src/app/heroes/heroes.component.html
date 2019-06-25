@@ -3,35 +3,36 @@
 
   <!-- Navbar brand -->
   <mdb-navbar-brand><a class="navbar-brand" routerLink='/home'>
-              <img src="/assets/img/overwatch.png" height="40" class="d-inline-block align-top" alt="">
-              Overwatch Crash Course
-  </a></mdb-navbar-brand>
+      <img src="/assets/img/overwatch.png" height="40" class="d-inline-block align-top" alt="">
+      Overwatch Crash Course
+    </a></mdb-navbar-brand>
 
   <!-- Collapsible content -->
   <links>
 
-      <!-- Links -->
-      <ul class="navbar-nav mr-auto">    
-          <li class="nav-item">
-            <a class="nav-link waves-light" mdbWavesEffect routerLink='/game'>About the Game</a>
-        </li>
-          <li class="nav-item active">
-              <a class="nav-link waves-light" mdbWavesEffect routerLink='/heroes'>Heroes<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-light" mdbWavesEffect routerLink='/roles'>Roles</a>
-        </li>
-          <li class="nav-item">
-              <a class="nav-link waves-light" mdbWavesEffect routerLink='/userprofile'>User Details</a>
-          </li>
-      </ul>
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink='/game'>About the Game</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink='/heroes'>Heroes<span
+            class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink='/roles'>Roles</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink='/userprofile'>User Details</a>
+      </li>
+    </ul>
 
-        <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                   <a class="nav-link waves-light" mdbWavesEffect (click)="onLogout()">Logout</a>
-              </li>
-        </ul>
-      <!-- Links -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect (click)="onLogout()">Logout</a>
+      </li>
+    </ul>
+    <!-- Links -->
 
   </links>
   <!-- Collapsible content -->
@@ -39,42 +40,19 @@
 </mdb-navbar>
 <!--/.Navbar-->
 
-  <div class="wrapper">
-      <button id="createButton" type="button" class="btn btn-success mr-auto" (click)="onCreate()">
-          <mat-icon>add</mat-icon>Create
-        </button>
-<div class="tableContainer">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="role">
-      <th mat-header-cell *matHeaderCellDef> Role </th>
-      <td mat-cell *matCellDef="let element"> {{element.role}} </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="difficulty">
-      <th mat-header-cell *matHeaderCellDef> Difficulty </th>
-      <td mat-cell *matCellDef="let element"> {{element.difficulty}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let row">
-        <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
-        <button mat-icon-button (click)="onDelete(row)"color="warn"><mat-icon>delete_outline</mat-icon></button>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</div>
+<div class="wrapper">
+  <button id="createButton" type="button" class="btn btn-success mr-auto" (click)="onCreate()">
+    <mat-icon>add</mat-icon>Create
+  </button>
+  <div class="flex-container">
+    <li *ngFor="let hero of dataSource | paginate: config" (click)="goto(hero.id)">
+      <mat-card class="example-card">
+        <img mat-card-image src="/assets/img/heroes/{{hero.image}}">
+        <mat-card-content>
+          <mat-card-title>{{hero.name}}</mat-card-title>
+        </mat-card-content>
+      </mat-card>
+    </li>
+  </div>
+  <pagination-controls class="myPaginator" (pageChange)="pageChanged($event)"></pagination-controls>
 </div>
