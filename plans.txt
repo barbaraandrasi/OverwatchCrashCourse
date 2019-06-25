@@ -1,4 +1,0 @@
-Entitások: User, Match, Team, Hero, Rewards
-
-angularban megjeleníteni egy meccset,
-post request hogy megjelenjen a dbben
