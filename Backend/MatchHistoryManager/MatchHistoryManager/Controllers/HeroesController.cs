@@ -24,7 +24,16 @@ namespace MatchHistoryManager.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Hero>>> GetHeroes()
         {
-            return await _context.Heroes.ToListAsync();
+            //var result = _context.Heroes.FromSql("SELECT Id, Image, Name FROM dbo.Heroes");
+
+            var result = from thing in _context.Heroes
+            select new Hero
+            {
+                Id = thing.Id,
+                Image = thing.Image,
+                Name = thing.Name
+            };
+            return await result.ToListAsync();
         }
 
         // GET: api/Heroes/5
